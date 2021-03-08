@@ -52,6 +52,92 @@ The codes are divided as follows:
 
 # Results
 
+In supervised learning applications, it is essential to keep a balance among all output classes since the models would not be biased by one class or another. This issue is also known as the unbalanced problem, and unfortunately, it is common in several real-life applications.
+The dataset shows an unbalanced class problem with the majority of negative classes, where the positive class represents only 0.85% of the dataset, which is typical since rarely a product will be in a backorder situation. Figure below illustrates the unbalanced dataset of the output feature (went_on_backorder):
+
+|![](/Figures/backorder_balance_binary.png) |
+|-------------------------------------------|
+| Balance of the original dataset           | 
+
+After trying to train ANN model using the original balance of the data, the results did not show any prediction capacity when predicting the positive class, obtaining a precision of 0.0% and a recall of 0.0% on the test data. It is believed that the model was able to learn only about the negative class, given the unbalanced issue.
+To deal with this situation, a Data Sampling solution has been considered. The Data Sampling approach is used to modify training datasets in such a way to increase the proportion of the class with fewer observations by either downsampling the majority class or upsampling the minority one.
+This work has considered three experiments of Data Sampling in order to compare them and determine a suitable method to teach the models about products going on backorder, as follows:
+
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-uzvj" rowspan="2">Experiments</th>
+    <th class="tg-7btt" colspan="3">Proportion of Positive and Negative Classes</th>
+  </tr>
+  <tr>
+    <td class="tg-7btt">Name</td>
+    <td class="tg-7btt">Positive Classes</td>
+    <td class="tg-7btt">Negative Classes</td>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-c3ow">1</td>
+    <td class="tg-c3ow">Down-sampled 50/50</td>
+    <td class="tg-c3ow">8.000 (50%)</td>
+    <td class="tg-c3ow">8.000 (50%)</td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">2</td>
+    <td class="tg-c3ow">Down-sampled 05/95</td>
+    <td class="tg-c3ow">8.000 (5%)</td>
+    <td class="tg-c3ow">150.000 (95%)</td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">3</td>
+    <td class="tg-c3ow">Up-sampled</td>
+    <td class="tg-c3ow">40.000 (50%)</td>
+    <td class="tg-c3ow">40.000 (50%)</td>
+  </tr>
+  <tr>
+    <td class="tg-c3ow">For all</td>
+    <td class="tg-c3ow">Test For All</td>
+    <td class="tg-c3ow">900 (0.85%)</td>
+    <td class="tg-c3ow">100.000 (99.15%)</td>
+  </tr>
+</tbody>
+</table>
+
+Given the structure of the dataset studied on this work, it was decided to create a supervised classification model using an ANN model. For the final model, two hidden layers were used, both using the activation function Relu, which seemed to be appropriated, considering that most of the features present only positive values. The sizes of these layers are 15 for each one. They were adjusted through several iterations aiming better results. A final dense layer was used with a Sigmoid function to get the output for the binary classification of classes, given the probabilities that the network returns. The optimiser used was Adam, which is an enhancement of Stochastic Gradient Descendent (SGD) and a Binary Cross-entropy loss function, given the fact that this is a binary classification problem. The number of epochs was decided through iterations, where the history was observed on each of them, plots for different metrics relevant for this problem were used, and the best results were obtained at 150 epochs. Even with the changes proposed the number the loss function, the AUC value, precision, and recall did not improve. The table bellow shows a summary of the model used for all the datasets designed for the experiments:
+
+<table>
+<thead>
+  <tr>
+    <th>Layer</th>
+    <th>Size</th>
+    <th>Activation Function</th>
+    <th>Optimizer</th>
+    <th>Loss Function</th>
+    <th>Epochs</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Dense</td>
+    <td>15</td>
+    <td>Relu</td>
+    <td rowspan="3">Adam</td>
+    <td rowspan="3">Binary Crossentropy</td>
+    <td rowspan="3">150</td>
+  </tr>
+  <tr>
+    <td>Dense</td>
+    <td>15</td>
+    <td>Relu</td>
+  </tr>
+  <tr>
+    <td>Dense</td>
+    <td>1</td>
+    <td>Sigmoid</td>
+  </tr>
+</tbody>
+</table>
+
 ![](/Figures/result_accuracy_loss.png)
 
 ![](/Figures/roc_curve_all_test.png)

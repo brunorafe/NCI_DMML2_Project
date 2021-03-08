@@ -1,6 +1,6 @@
 # A Deep Learning Approach to Supply Chain Data
 
-Abstract—This electronic document is a proposed study of supply chain data. It shows the motivation behind the selection of data as well as a critical view of related works using deep learning techniques in supply chain networks. The dataset selected is based on a product inventory of an anonymous company, and it has information about quantities of products, previous sales and forecast sales. The study is focused on applying an ANN model in a supply chain dataset to forecast when a product will be in backorder with different proportions of the dataset using downsampling and upsampling techniques. The results were evaluated by accuracy, precision, recall and F1 score metrics as well as ROC Curve and Confusion Matrix methods.
+The mentioned code is a study of supply chain data using deep learning. The dataset selected is based on a product inventory of an anonymous company, and it has information about quantities of products, previous sales and forecast sales. The study is focused on applying an ANN model in a supply chain dataset to forecast when a product will be in backorder with different proportions of the dataset using downsampling and upsampling techniques. The results were evaluated by accuracy, precision, recall and F1 score metrics as well as ROC Curve and Confusion Matrix methods.
 
 # Data Source
 
@@ -37,10 +37,18 @@ The project was created based on Anaconda environment. The following libraries a
 - pandas
 - seaborn
 - matplotlib.pyplot
+- tensorflow
 
-All libraries are already installed in Anaconda environment default installation. For more information about how to install Anaconda environment, please refer to its [documentation](https://www.anaconda.com/products/individual).
+All libraries are already installed in Anaconda environment default installation with exception of the tensorflow library, which requires [additional procedures](https://docs.anaconda.com/anaconda/user-guide/tasks/tensorflow/) for installation. For more information about how to install Anaconda environment, please refer to its [documentation](https://www.anaconda.com/products/individual).
 
 # Usage
+
+The codes are divided as follows:
+
+| Code | Description|
+|-------------------------------------------|---------------------------------------------------------------------------------------------------------------------|
+| Group_B-DMML2-Data_Preprocessing_v5.ipynb | The preprocessing steps necessary to implement the ANN model.|
+| Group_B-DMML2-Data_Model_v5.ipynb         | The application of the ANN model as well as its evaluation using accuracy metric, ROC curve and confusion matrix.|
 
 # Results
 

@@ -21,7 +21,7 @@ data.
 
 The following data mining steps were conducted in order to make all data sources ready for model's application:
 
-- **Inconsistency Check**: activities regarding the verification of inconsistencies in the raw data such as incomplete observations or bad format data. Check up of the correct type of data attribution is also covered in this step.
+- **Inconsistency Check**: activities regarding the verification of inconsistencies in the raw data such as incomplete observations or bad format data. Checkup of the correct type of data attribution is also covered in this step.
 - **Data Cleaning**: activities regarding the cleaning of incomplete or corrupt format data.
 - **Feature Engineering**: activities regarding the selection and creation of relevant attributes which contribute most to the predicted outputs.
 - **Balancing**: activities regarding the definition of balance of the target output of data. Sampling techniques will also be presented in this step.
@@ -54,13 +54,13 @@ The codes are divided as follows:
 
 In supervised learning applications, it is essential to keep a balance among all output classes since the models would not be biased by one class or another. This issue is also known as the unbalanced problem, and unfortunately, it is common in several real-life applications.
 
-The dataset shows an unbalanced class problem with the majority of negative classes, where the positive class represents only 0.85% of the dataset, which is typical since rarely a product will be in a backorder situation. Figure below illustrates the unbalanced dataset of the output feature (went_on_backorder):
+The dataset shows an unbalanced class problem with the majority of negative classes, where the positive class represents only 85% of the dataset, which is typical since rarely a product will be in a backorder situation. Figure below illustrates the unbalanced dataset of the output feature (went_on_backorder):
 
 |![](/Figures/backorder_balance_binary.png) |
 |:-----------------------------------------:|
 | Balance of the original dataset           | 
 
-After trying to train ANN model using the original balance of the data, the results did not show any prediction capacity when predicting the positive class, obtaining a **precision of 0.0%** and a **recall of 0.0%** on the test data. It is believed that the model was able to learn only about the negative class, given the unbalanced issue.
+After trying to train ANN model using the original balance of the data, the results did not show any prediction capacity when predicting the positive class, obtaining a **precision of 0%** and a **recall of 0%** on the test data. It is believed that the model was able to learn only about the negative class, given the unbalanced issue.
 
 To deal with this situation, a Data Sampling solution has been considered. The Data Sampling approach is used to modify training datasets in such a way to increase the proportion of the class with fewer observations by either downsampling the majority class or upsampling the minority one.
 This work has considered three experiments of Data Sampling in order to compare them and determine a suitable method to teach the models about products going on backorder, as follows:
@@ -111,7 +111,7 @@ For the final model, two hidden layers were used, both using the activation func
 
 A final dense layer was used with a Sigmoid function to get the output for the binary classification of classes, given the probabilities that the network returns. The optimiser used was Adam, which is an enhancement of Stochastic Gradient Descendent (SGD) and a Binary Cross-entropy loss function, given the fact that this is a binary classification problem. 
 
-The number of epochs was decided through iterations, where the history was observed on each of them, plots for different metrics relevant for this problem were used, and the best results were obtained at 150 epochs. Even with the changes proposed the number the loss function, the AUC value, precision, and recall did not improve. The table bellow shows a summary of the model used for all the datasets designed for the experiments:
+The number of epochs was decided through iterations, and the best results were obtained at 150 epochs. Even with the changes proposed the number the loss function, the AUC value, precision, and recall did not improve. The table bellow shows a summary of the model used for all the datasets designed for the experiments:
 
 <table>
 <thead>
@@ -152,13 +152,13 @@ Results have shown that the model trained with the Experiment 2, the **"Down-sam
 
 ![](/Figures/result_accuracy_loss.png)
 
-Observing the ROC AUC values, the Up-sampled model has the best result with 0.882. However, testing on the "test for all" dataset it is the **"Down-sampled 05/95%"** model the one with the best results again, obtaining a ROC AUC value of 0.841, while models from Experiments 1 and 3 got 0.741 and 0.767 respectively. The figures below show the ROC curves for the three models, tested both in their single test dataset and in the test dataset with the original balance of classes.
+Observing the ROC AUC values, the Up-sampled model has the best result with 0.882. However, testing on the "test for all" dataset it is the **"Down-sampled 05/95%"** model the one with the best results again, obtaining a ROC AUC value of 0.841, while models from Experiments 1 and 3 got 0.741 and 0.767, respectively. The figures below show the ROC curves for the three models, tested both in their single test dataset and in the test dataset with the original balance of classes.
 
 ![](/Figures/roc_curve_all_test.png)
 
 ![](/Figures/roc_curve_single_test.png)
 
-The results of accuracy and loss metrics, as well as the ROC curve can give the false perception that the **"Down-sampled 05/95%"** model were accurate and the one with best results. However, the goal of the study was to create a model, which would be able to identify products in backorder situations (in our case, the positive classes). The Confusion Matrix helps us to see exactly which classes were predicted correctly. By looking at the Confusion Matrix results below, it is possible to see that the experiment using the up-sampling technique (**Up-Sampled Model**) was the best choice while trying to predict products in backorder situation:
+The results of accuracy and loss metrics, as well as the ROC curve can give the false perception that the **"Down-sampled 05/95%"** model were accurate and the one with best results. However, the goal of the study was to create a model, which would be able to identify products in backorder situation (in our case, the positive classes). The Confusion Matrix helps us to see exactly which classes were predicted correctly. By looking at the Confusion Matrix results below, it is possible to see that the experiment using the up-sampling technique (**Up-Sampled Model**) was the best choice while trying to predict products in backorder situation:
 
 ![](/Figures/confusion_matrix_all.png)
 

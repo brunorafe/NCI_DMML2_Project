@@ -105,7 +105,13 @@ This work has considered three experiments of Data Sampling in order to compare 
 </tbody>
 </table>
 
-Given the structure of the dataset studied on this work, it was decided to create a supervised classification model using an ANN model. For the final model, two hidden layers were used, both using the activation function Relu, which seemed to be appropriated, considering that most of the features present only positive values. The sizes of these layers are 15 for each one. They were adjusted through several iterations aiming better results. A final dense layer was used with a Sigmoid function to get the output for the binary classification of classes, given the probabilities that the network returns. The optimiser used was Adam, which is an enhancement of Stochastic Gradient Descendent (SGD) and a Binary Cross-entropy loss function, given the fact that this is a binary classification problem. The number of epochs was decided through iterations, where the history was observed on each of them, plots for different metrics relevant for this problem were used, and the best results were obtained at 150 epochs. Even with the changes proposed the number the loss function, the AUC value, precision, and recall did not improve. The table bellow shows a summary of the model used for all the datasets designed for the experiments:
+Given the structure of the dataset studied on this work, it was decided to create a supervised classification model using an ANN model. 
+
+For the final model, two hidden layers were used, both using the activation function Relu, which seemed to be appropriated, considering that most of the features present only positive values. The sizes of these layers are 15 for each one. They were adjusted through several iterations aiming better results. 
+
+A final dense layer was used with a Sigmoid function to get the output for the binary classification of classes, given the probabilities that the network returns. The optimiser used was Adam, which is an enhancement of Stochastic Gradient Descendent (SGD) and a Binary Cross-entropy loss function, given the fact that this is a binary classification problem. 
+
+The number of epochs was decided through iterations, where the history was observed on each of them, plots for different metrics relevant for this problem were used, and the best results were obtained at 150 epochs. Even with the changes proposed the number the loss function, the AUC value, precision, and recall did not improve. The table bellow shows a summary of the model used for all the datasets designed for the experiments:
 
 <table>
 <thead>
@@ -140,11 +146,19 @@ Given the structure of the dataset studied on this work, it was decided to creat
 </tbody>
 </table>
 
+To evaluate the model and compare the three experiments designed, each one of the datasets were created considering a single test data with the balance defined for them. In addition to that, all the models trained with its experimental datasets were tested with a global test dataset, which has the original balance of classes.
+
+Results have shown that the model trained with the Experiment 2, the "Down-sampled 05/95%" model, performed better, obtaining the lowest value for the loss function and a good accuracy when tested with its single test dataset (0.949) and with the "test for all" (0.988). The other experiments obtained a relatively good accuracy only when they were tested in their single test dataset (0.788 and 0.813, respectively). However, when they tested with the original balance of the data they are not able to get good predictions, obtaining accuracy of 0.137 and 0.144, which means that training the models with balanced classes do not achieve a proper generalisation of the data.
+
 ![](/Figures/result_accuracy_loss.png)
+
+Observing the ROC AUC values, the Up-sampled model has the best result with 0.882. However, testing on the "test for all" dataset it is the "Down-sampled 05/95%" model the one with the best results again, obtaining a ROC AUC value of 0.841, while models from Experiments 1 and 3 got 0.741 and 0.767 respectively. The figures below show the ROC curves for the three models, tested both in their single test dataset and in the test dataset with the original balance of classes.
 
 ![](/Figures/roc_curve_all_test.png)
 
 ![](/Figures/roc_curve_single_test.png)
+
+
 
 ![](/Figures/confusion_matrix_all.png)
 

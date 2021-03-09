@@ -60,7 +60,7 @@ The dataset shows an unbalanced class problem with the majority of negative clas
 |:-----------------------------------------:|
 | Balance of the original dataset           | 
 
-After trying to train ANN model using the original balance of the data, the results did not show any prediction capacity when predicting the positive class, obtaining a precision of 0.0% and a recall of 0.0% on the test data. It is believed that the model was able to learn only about the negative class, given the unbalanced issue.
+After trying to train ANN model using the original balance of the data, the results did not show any prediction capacity when predicting the positive class, obtaining a **precision of 0.0%** and a **recall of 0.0%** on the test data. It is believed that the model was able to learn only about the negative class, given the unbalanced issue.
 
 To deal with this situation, a Data Sampling solution has been considered. The Data Sampling approach is used to modify training datasets in such a way to increase the proportion of the class with fewer observations by either downsampling the majority class or upsampling the minority one.
 This work has considered three experiments of Data Sampling in order to compare them and determine a suitable method to teach the models about products going on backorder, as follows:
@@ -148,17 +148,17 @@ The number of epochs was decided through iterations, where the history was obser
 
 To evaluate the model and compare the three experiments designed, each one of the datasets were created considering a single test data with the balance defined for them. In addition to that, all the models trained with its experimental datasets were tested with a global test dataset, which has the original balance of classes.
 
-Results have shown that the model trained with the Experiment 2, the "Down-sampled 05/95%" model, performed better, obtaining the lowest value for the loss function and a good accuracy when tested with its single test dataset (0.949) and with the "test for all" (0.988). The other experiments obtained a relatively good accuracy only when they were tested in their single test dataset (0.788 and 0.813, respectively). However, when they tested with the original balance of the data they are not able to get good predictions, obtaining accuracy of 0.137 and 0.144, which means that training the models with balanced classes do not achieve a proper generalisation of the data.
+Results have shown that the model trained with the Experiment 2, the **"Down-sampled 05/95%"** model, performed better, obtaining the lowest value for the loss function and a good accuracy when tested with its single **test dataset (0.949)** and with the **"test for all" (0.988)**. The other experiments obtained a relatively good accuracy only when they were tested in their single test dataset (0.788 and 0.813, respectively). However, when they tested with the original balance of the data they are not able to get good predictions, obtaining accuracy of 0.137 and 0.144, which means that training the models with balanced classes do not achieve a proper generalisation of the data.
 
 ![](/Figures/result_accuracy_loss.png)
 
-Observing the ROC AUC values, the Up-sampled model has the best result with 0.882. However, testing on the "test for all" dataset it is the "Down-sampled 05/95%" model the one with the best results again, obtaining a ROC AUC value of 0.841, while models from Experiments 1 and 3 got 0.741 and 0.767 respectively. The figures below show the ROC curves for the three models, tested both in their single test dataset and in the test dataset with the original balance of classes.
+Observing the ROC AUC values, the Up-sampled model has the best result with 0.882. However, testing on the "test for all" dataset it is the **"Down-sampled 05/95%"** model the one with the best results again, obtaining a ROC AUC value of 0.841, while models from Experiments 1 and 3 got 0.741 and 0.767 respectively. The figures below show the ROC curves for the three models, tested both in their single test dataset and in the test dataset with the original balance of classes.
 
 ![](/Figures/roc_curve_all_test.png)
 
 ![](/Figures/roc_curve_single_test.png)
 
-
+The results of accuracy and loss metrics, as well as the ROC curve can give the false perception that the **"Down-sampled 05/95%"** model were accurate and the one with best results. However, the goal of the study was to create a model, which would be able to identify products in backorder situations (in our case, the positive classes). The Confusion Matrix helps us to see exactly which classes were predicted correctly. By looking at the Confusion Matrix results below, it is possible to see that the experiment using the up-sampling technique (**Up-Sampled Model**) was the best choice while trying to predict products in backorder situation:
 
 ![](/Figures/confusion_matrix_all.png)
 

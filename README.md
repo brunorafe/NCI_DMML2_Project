@@ -21,7 +21,7 @@ data.
 
 The following data mining steps were conducted in order to make all data sources ready for model's application:
 
-- **Inconsistency Check**: activities regarding the verification of inconsistencies in the raw data such as incomplete observations or bad format data. Check up of the correct type of data attribution is also covered in this section.
+- **Inconsistency Check**: activities regarding the verification of inconsistencies in the raw data such as incomplete observations or bad format data. Check up of the correct type of data attribution is also covered in this step.
 - **Data Cleaning**: activities regarding the cleaning of incomplete or corrupt format data.
 - **Feature Engineering**: activities regarding the selection and creation of relevant attributes which contribute most to the predicted outputs.
 - **Balancing**: activities regarding the definition of balance of the target output of data. Sampling techniques will also be presented in this step.
@@ -47,7 +47,7 @@ The codes are divided as follows:
 
 | Code | Description|
 |:-----------------------------------------:|:----------------------------------------------------------------------------------------------------------------:|
-| Group_B-DMML2-Data_Preprocessing_v5.ipynb | The preprocessing steps necessary to implement the ANN model.|
+| Group_B-DMML2-Data_Preprocessing_v5.ipynb | The preprocessing steps necessary to implement the ANN model, covered in [Preprocessing](#preprocessing) section.|
 | Group_B-DMML2-Data_Model_v5.ipynb         | The application of the ANN model as well as its evaluation using accuracy metric, ROC curve and confusion matrix.|
 
 # Results
